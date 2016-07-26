@@ -1,0 +1,63 @@
+# You may enter a description between the BEGIN and END labels.
+# BEGIN
+# The "p3diso" setup is a spherical locally isothermal setup that may
+# be used to simulate a "half-disk" (using symmetric boundary
+# conditions at the equator). If you want to simulate the full disk,
+# you should create another setup slightly different from this one:
+# you should remove the HALFDISK option below, and you should change
+# the upper boundary condition in colatitude. The HALFDISK option is
+# meant to prevent a spurious vertical force to arise as a consequence
+# of the lack of the lower half of the disk.
+# In order to run it, do: 
+# make SETUP=p3diso
+# ./fargo3d -m in/p3diso.par
+# Note: the 'full disk' set up is now provided in the public release
+# and is called 'p3disof'
+# END
+#----------------------------------------------------------------------
+# From the list below, please activate/deactivate the options that     
+# apply to your run. If you modify any of these options, make sure     
+# that you recompile the whole code by typing "make clean; make".      
+#                                                                      
+# Look at end of file for a brief guide to the compile-time options.   
+#----------------------------------------------------------------------
+#TestProblems
+
+MONITOR_2D = MASS | MOM_X
+MONITOR_SCALAR = TORQ
+
+#Dimension(s) of Simulation. Here 3D (Phi,r,theta)
+
+FARGO_OPT +=  -DX
+FARGO_OPT +=  -DY
+FARGO_OPT +=  -DZ
+
+FARGO_OPT += -DSTOCKHOLM
+FARGO_OPT += -DVISCOSITY
+FARGO_OPT += -DPOTENTIAL
+FARGO_OPT += -DHALFDISK
+
+#Equation of State
+
+FARGO_OPT +=  -DISOTHERMAL
+
+#Coordinate System.
+
+FARGO_OPT +=  -DSPHERICAL
+
+#Transport Algorithm
+
+#FARGO_OPT += -DSTANDARD
+
+
+
+
+#Algorithms
+FARGO_OPT += -DSUBSTEP2
+
+#Cuda blocks
+ifeq (${GPU}, 1)
+FARGO_OPT += -DBLOCK_X=16
+FARGO_OPT += -DBLOCK_Y=8
+FARGO_OPT += -DBLOCK_Z=4
+endif

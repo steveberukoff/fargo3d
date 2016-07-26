@@ -1,0 +1,51 @@
+# You may enter a description between the BEGIN and END labels.
+# BEGIN
+# The "fargo" setup is the 2D polar setup that corresponds to the
+# standard setup of the former FARGO code.
+# In order to run it, do:
+# make SETUP=fargo
+# fargo3d -m in/fargo.par
+# END
+#-------------------------------------------------------------------------------
+# From the list below, activate/deactivate the options that apply to your run.
+#-------------------------------------------------------------------------------
+#Problem
+MONITOR_SCALAR = MASS | MOM_X | TORQ
+MONITOR_Y_RAW  = TORQ
+
+FARGO_OPT += -DSTOCKHOLM
+
+#Dimension(s) of Simulation. Here 2D (r,Phi) like the former FARGO code
+FARGO_OPT +=  -DX #X --> PHI
+FARGO_OPT +=  -DY #Y --> R
+
+#Equation of State			# ONLY ONE OF THEM
+FARGO_OPT +=  -DISOTHERMAL		# ISOTHERMAL EQUATION OF STATE
+
+#Coordinate System.
+FARGO_OPT +=  -DCYLINDRICAL		# COORDINATE SYSTEM. IN FARGO SETUP, ALWAYS IS 
+	      				# CYLINDRICAL
+#Transport Algorithm
+#FARGO_OPT += -DSTANDARD		# YOU CAN USE THIS OPTION IF YOU WANT TO COMPARE THE 
+	      		 		# SPEEDUP OF THE FARGO ALGORITHM RESPECT TO THE
+	      		 		# STANDARD ADVECTION ALGORITHM.
+FARGO_OPT += -DLEGACY
+
+#Algorithms
+#FARGO_OPT += -DNOSUBSTEP2		# DISABLES ARTIFICIAL VISCOSITY.
+
+#Gravity
+FARGO_OPT += -DPOTENTIAL
+
+#Viscosity
+FARGO_OPT += -DVISCOSITY
+
+#Cuda blocks
+ifeq (${GPU}, 1)
+FARGO_OPT += -DBLOCK_X=16
+FARGO_OPT += -DBLOCK_Y=16
+FARGO_OPT += -DBLOCK_Z=1
+endif
+
+#Simple precision
+#FARGO_OPT += -DFLOAT

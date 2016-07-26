@@ -1,0 +1,14 @@
+#Boundaries configuration file for wave2d.bound
+#----------------------------------------------
+
+Density:
+	Ymin: EXTRAPOLATE_LEFT    #KEPLERIAN2DDENS
+	Ymax: EXTRAPOLATE_RIGHT    #KEPLERIAN2DDENS
+
+Vx:
+	Ymin:	KEPLERIAN2DVAZIM
+	Ymax:   KEPLERIAN2DVAZIM
+
+Vy:
+	Ymin:	ANTISYMMETRIC
+	Ymax:   ANTISYMMETRIC

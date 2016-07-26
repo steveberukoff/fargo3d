@@ -1,0 +1,85 @@
+#Standard parameters for the internal variables of the code.
+#This variables are necessary, and this file suports the .par
+#file used in each SETUP. If one of these variables are not
+#defined in the SETUP.par file, then the default value in this
+#file will be taken. Anycase, your SETUP.par file is prioritary
+
+#Mesh parameters
+
+Nx			1
+Ny			1
+Nz			1
+Xmin			0.0
+Xmax			1.0
+Ymin			0.0
+Ymax			1.0
+Zmin			0.0
+Zmax			1.0
+Oorta			-0.75
+SigmaSlope		0.0
+Eccentricity		0.0
+Inclination		0.0
+ThicknessSmoothing	0.0
+RocheSmoothing		0.0
+AspectRatio		0.05
+Sigma0			1.0
+FlaringIndex		0.0
+Nu			0.0
+Eta			0.0
+Cs			1.0
+Frame			fixed
+OmegaFrame		0.0
+IndirectTerm		no
+ExcludeHill		no
+MassTaper		0.0
+Noise			0.0
+VerticalDamping		0.0
+Spacing			default
+Coordinates		standard
+Disk			No
+Gamma			1.66666667
+Alpha			0.0
+PlanetConfig		NONE
+PeriodicZ		No
+PeriodicY		No
+PlanetHeating		No
+
+InnerResonance		0.5
+OuterResonance		1.5
+
+CFL			0.44
+
+Vtk			No
+RealType		Standard  #float or double
+
+PlanetMass		0.0
+Field			gasdens
+Cmap			cubehelix
+Log			no
+Colorbar		yes
+Autocolor		yes
+Aspect			auto
+vmin			0.0
+vmax			1.0
+PlotLine		field[:,:,0]
+
+OrbitalRadius		0.0
+ReleaseDate		0.0
+ReleaseRadius		0.0
+SemiMajorAxis		0.0
+
+FuncArchFile		std/func_arch.cfg
+Setup			Undefined
+
+Nsnap			0
+WriteDensity		No
+WriteEnergy		No
+WriteBx			No
+WriteBy			No
+WriteBz			No
+WriteVx			No
+WriteVy			No
+WriteVz			No
+WriteDivergence		No
+WriteEnergyRad		No
+WriteTau		No

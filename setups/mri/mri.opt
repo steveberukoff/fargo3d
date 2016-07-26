@@ -1,0 +1,61 @@
+# You may enter a description between the BEGIN and END labels.
+# BEGIN
+# The "mri" setup is a 3D cylindrical setup for global, unstratified
+# MRI calculations.
+# END
+#----------------------------------------------------------------------
+# From the list below, please activate/deactivate the options that     
+# apply to your run. If you modify any of these options, make sure     
+# that you recompile the whole code by typing "make clean; make".      
+#                                                                      
+# Look at end of file for a brief guide to the compile-time options.   
+#----------------------------------------------------------------------
+
+#Dimension(s) of Simulation
+
+#MONITOR_Y = REYNOLDS | MAXWELL | MASS
+MONITOR_Y_RAW = REYNOLDS | MAXWELL | MASS
+MONITOR_2D = BXFLUX
+
+#FARGO_OPT +=  -DFLOAT
+
+FARGO_OPT +=  -DX
+FARGO_OPT +=  -DY
+FARGO_OPT +=  -DZ
+
+#Equation of State
+
+#FARGO_OPT +=  -DADIABATIC
+FARGO_OPT +=  -DISOTHERMAL
+
+#Including MHD
+FARGO_OPT += -DMHD
+FARGO_OPT += -DSTRICTSYM
+
+#Coordinate System.
+
+#FARGO_OPT +=  -DCARTESIAN
+FARGO_OPT +=  -DCYLINDRICAL
+#FARGO_OPT +=  -DSPHERICAL
+
+#Gravity
+FARGO_OPT += -DPOTENTIAL
+
+#Transport Algorithm
+
+#FARGO_OPT += -DSTANDARD
+
+
+#FARGO_OPT += -DONOR
+
+
+#Artificial viscosity
+#FARGO_OPT += -DNOSUBSTEP2
+#FARGO_OPT += -DSTRONG_SHOCK
+
+#Cuda blocks
+ifeq (${GPU}, 1)
+FARGO_OPT += -DBLOCK_X=16
+FARGO_OPT += -DBLOCK_Y=8
+FARGO_OPT += -DBLOCK_Z=4
+endif
